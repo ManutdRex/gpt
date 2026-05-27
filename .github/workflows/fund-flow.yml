@@ -1,0 +1,19 @@
+name: 盘后资金流向推送到飞书
+
+on:
+  schedule:
+    - cron: '15 7 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  fund-flow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - run: python fund_to_feishu.py
+        env:
+          FEISHU_URL: ${{ secrets.FEISHU_URL }}
