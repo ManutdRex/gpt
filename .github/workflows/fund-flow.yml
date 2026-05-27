@@ -2,7 +2,8 @@ name: 盘后资金流向推送到飞书
 
 on:
   schedule:
-    - cron: '15 7 * * 1-5'
+    # 北京时间 15:08 = UTC 7:08 (收盘后立即抓，周一至周五)
+    - cron: '8 7 * * 1-5'
   workflow_dispatch:
 
 jobs:
